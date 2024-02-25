@@ -189,5 +189,75 @@
 //print("\n-----------------------------")
 
 import Cocoa
+let nf = NumberFormatter()
+nf.numberStyle = NumberFormatter.Style.decimal
+nf.maximumFractionDigits = 1
+let kelvinZero = 273.15
+typealias Weather = (String, Double, Double, Double)
+let cityNames = ["Харків", "Київ", "Одеса", "Львів", "Чернігів", "Житомир", "Вінниця"]
+var weatherInCities: [Weather] = []
 
-var greeting = "Hello, playground"
+
+for city in cityNames {
+    
+    let temp = Double(arc4random() % 30) + kelvinZero
+    let tempMin = Double(arc4random() % 30) + kelvinZero
+    let tempMax = Double(arc4random() % 30) + kelvinZero
+    
+    let weatherInfo = Weather(city: city, temp: temp, tempMin: tempMin, tempMax: tempMax)
+    weatherInCities.append(weatherInfo)
+}
+
+let cityIndex = Int(arc4random() % UInt32(weatherInCities.count - 1))
+
+print("---------- ЕКРАН 1 ----------")
+for weatherInfo in weatherInCities {
+    let city = weatherInfo.0
+    let kelvin = weatherInfo.1
+    let kelvinMin = weatherInfo.2
+    let kelvinMax = weatherInfo.3
+    let celciusMin = kelvinMin - 273.15
+    let celciusMax = kelvinMax - 273.15
+    let farenMin = kelvinMin * (9.0/5.0) - 459.67
+    let farenMax = kelvinMax * (9.0/5.0) - 459.67
+    let celcius = kelvin - 273.15
+    let farengheit = kelvin * (9.0/5.0) - 459.67
+    
+    print("\n\(city):")
+    print("t: \(nf.string(from: celcius as NSNumber)!) C")
+    print("t: \(nf.string(from: farengheit as NSNumber)!) F")
+    print("min t: \(celciusMin) C / \(nf.string(from: farenMin as NSNumber)!) F")
+    print("max t: \(celciusMax) C / \(nf.string(from: celciusMax as NSNumber)!) F")
+}
+print("\n-----------------------------")
+print("\n\n")
+
+
+
+
+
+
+
+
+// виводимо інформацію про температуру тільки у Цельсій
+// для кожного міста, що є у масиві weatherInCities
+print("---------- ЕКРАН 2 ----------")
+for index in 1 ..< 10 {
+    let _ = index
+    let weatherInfo = weatherInCities[2]
+    let city = weatherInfo.0
+    let kelvin = weatherInfo.1
+    print("\n\(city):\nt: \(String(format: "%.1f", kelvin)) C")
+}
+print("\n-----------------------------")
+print("\n\n")
+
+print("---------- ЕКРАН 3 ----------")
+for index in 0 ... weatherInCities.count {
+    let _ = index
+    let weatherInfo = weatherInCities[cityIndex]
+    let city = weatherInfo.0
+    let kelvin = weatherInfo.1
+    print("\n\(city):\nt: \(String(format: "%.2f", kelvin)) F")
+}
+print("\n-----------------------------")
