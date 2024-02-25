@@ -253,11 +253,10 @@ print("\n\n")
 
 
 print("---------- ЕКРАН 3 ----------")
-for index in 0 ... weatherInCities.count {
-    let _ = index
-    let weatherInfo = weatherInCities[cityIndex]
+for weatherInfo in weatherInCities {
     let city = weatherInfo.0
     let kelvin = weatherInfo.1
-    print("\n\(city):\nt: \(String(format: "%.2f", kelvin)) F")
+    let farengheit = kelvin * (9.0/5.0) - 459.67
+    print("\n\(city):\nt: \(String(format: "%.1f", farengheit)) F")
 }
 print("\n-----------------------------")
