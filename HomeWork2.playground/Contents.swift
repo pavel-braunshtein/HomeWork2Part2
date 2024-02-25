@@ -188,6 +188,12 @@
 //}
 //print("\n-----------------------------")
 
+
+
+
+
+
+
 import Cocoa
 let nf = NumberFormatter()
 nf.numberStyle = NumberFormatter.Style.decimal
@@ -199,16 +205,16 @@ var weatherInCities: [Weather] = []
 
 
 for city in cityNames {
-    
     let temp = Double(arc4random() % 30) + kelvinZero
     let tempMin = Double(arc4random() % 30) + kelvinZero
     let tempMax = Double(arc4random() % 30) + kelvinZero
-    
     let weatherInfo = Weather(city: city, temp: temp, tempMin: tempMin, tempMax: tempMax)
     weatherInCities.append(weatherInfo)
 }
-
 let cityIndex = Int(arc4random() % UInt32(weatherInCities.count - 1))
+
+
+
 
 print("---------- ЕКРАН 1 ----------")
 for weatherInfo in weatherInCities {
@@ -236,11 +242,6 @@ print("\n\n")
 
 
 
-
-
-
-// виводимо інформацію про температуру тільки у Цельсій
-// для кожного міста, що є у масиві weatherInCities
 print("---------- ЕКРАН 2 ----------")
 for weatherInfo in weatherInCities {
     let city = weatherInfo.0
@@ -250,6 +251,9 @@ for weatherInfo in weatherInCities {
 }
 print("\n-----------------------------")
 print("\n\n")
+
+
+
 
 
 print("---------- ЕКРАН 3 ----------")
